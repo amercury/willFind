@@ -61,6 +61,8 @@ export default () => {
             id: child.key,
             text: message.text,
             user: message.user,
+            hours: message.hours,
+            minutes: message.minutes
           });
         } else if (message.type === "file") {
 
@@ -68,6 +70,8 @@ export default () => {
             id: child.key,
             url: message.text,
             user: message.user,
+            hours: message.hours,
+            minutes: message.minutes
           });
         }
       });
@@ -83,6 +87,8 @@ export default () => {
         text: message,
         user: localStorage.getItem("userName"),
         type: type,
+        hours: new Date().getHours(),
+        minutes: new Date().getMinutes()
       });
   };
 
@@ -142,7 +148,7 @@ export default () => {
                 message.text ? (
                   <div className="comment">
                     <div>
-                      <FormHelperText>User: <b>{message.user}</b> </FormHelperText>
+                      <FormHelperText> сегодня в {message.hours}:{message.minutes < 10 ? `0${message.minutes}` : message.minutes}  <b>{message.user}</b> </FormHelperText>
                       <p key={message.id} ref={ref}>
                         {message.text}
                       </p>
@@ -207,7 +213,7 @@ export default () => {
                     style={{ display: "none" }}
                     type="file"
                     id="icon-button-file"
-                    onChange={(event) => { temp = event.target.files[0]; console.log(temp) }}
+                    onChange={(event) => { uploadPhoto(event) }}
 
                   />
                   <label htmlFor="icon-button-file">

@@ -34,10 +34,10 @@ const fetchLogin = async ({ email, password }) => {
       localStorage.setItem("userId", response.userSession.id);
       return response;
     } else {
-      alert("net nichego");
+      console.error("net nichego");
     }
   } catch (e) {
-    alert("Ошибка, сервер недоступен");
+    console.error("Ошибка, сервер недоступен");
   }
 };
 
@@ -55,7 +55,7 @@ const fetchLogout = async () => {
     localStorage.clear();
     return false;
   } else {
-    alert("net nichego");
+    console.error("net nichego");
   }
   //} catch (e) {
   // console.message("Ошибка, сервер недоступен", e);
@@ -87,7 +87,7 @@ const fetchRegister = async ({ name, email, password, repeadPassword }) => {
         return response
       }
     } catch (e) {
-      alert("Ошибка, сервер недоступен");
+      console.error("Ошибка, сервер недоступен");
     }
   }
 };
@@ -139,6 +139,7 @@ function* logoutPage(action) {
     console.log(logout);
     yield put(logoutFetch(logout));
     //yield put(history.push('/'))
+    history.push('/')
   } catch (error) {
     yield put(loadingError(error.message));
   }
@@ -215,7 +216,7 @@ function* addPointFetch(action) {
     const updated = yield call(fetchPutCoordinates, obj);
     const poteryashes = yield call(fetchMissedPpl);
     yield put(putCoordinates(poteryashes));
-    console.log(poteryashes);
+    history.push('/map')
   } catch (error) {
     yield put(loadingError(error.message));
   }

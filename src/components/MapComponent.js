@@ -5,7 +5,7 @@ import { setSagaState } from '../redux/actions'
 
 const mapState = {
   center: [55.751574, 37.573856],
-  zoom: 9,
+  zoom: 7,
   behaviors: ["default", "scrollZoom"],
   coordinates: []
 };
@@ -17,11 +17,12 @@ const getPointData = (
   clothes,
   timeOfLost,
   id,
-  image) => {
+  image,
+  addressOfLost) => {
   return {
     balloonContentBody:
       `<address>
-      <h5><strong>${firstName} ${lastName} ${middleName}</strong></h5>,
+      <h5><strong> ${lastName} ${firstName} ${middleName}</strong></h5>
       <br/>
       <img 
       alt="Remy Sharp"
@@ -37,7 +38,7 @@ const getPointData = (
       <br/>
       Перейти в профиль,<a href="/people/${id}"> подробнее...</a>,
       </address>`,
-    clusterCaption: ` <strong> ${firstName} ${lastName} ${middleName}</strong>`
+    clusterCaption: ` <strong> ${addressOfLost}</strong>`
   };
 };
 const getPointOptions = () => {
@@ -94,7 +95,8 @@ export default function MapComponent() {
                       objUser.clothes,
                       objUser.timeOfLost,
                       objUser._id,
-                      objUser.image
+                      objUser.image,
+                      objUser.addressOfLost
                     )}
                   options={getPointOptions()}
                 />

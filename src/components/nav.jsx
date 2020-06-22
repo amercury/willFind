@@ -42,14 +42,14 @@ export default function ButtonAppBar() {
           </Typography>
           {userSession ?
             <>
-              <Button><Link to='/map' className="aNav">MAP</Link></Button>
+              <Link to='/map' className="aNav">ПРОПАВШИЕ</Link>
               <Link to='/profile' className="aNav">{userName} </Link>
-              <Link to='/profile/logout' className="aNav" onClick={() => dispatch(logoutSaga())}>LOGOUT</Link>
+              <Link to='/profile/logout' className="aNav" onClick={() => dispatch(logoutSaga())}>ВЫЙТИ</Link>
               {/* <Toogle /> */}
             </> :
             <>
-              <Link to='/map' className="aNav" color="inherit">MAP</Link>
-              <Link to='/login' className="aNav" color="inherit">LOGIN</Link>
+              <Link to='/map' className="aNav" color="inherit">ПРОПАВШИЕ</Link>
+              <Link to='/login' className="aNav" color="inherit">ВОЙТИ</Link>
               {/* <Toogle /> */}
             </>}
         </Toolbar>

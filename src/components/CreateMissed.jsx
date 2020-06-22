@@ -4,11 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "@material-ui/core/Button";
 import { addPoint } from "../redux/actions";
 import CropForm from './Avatar'
+import history from "../heplers/history";
 import './AvatarStyle.css'
 export default () => {
   const url = useSelector(state => state.reducer.src)
   const dispatch = useDispatch();
-  const history = useHistory();
+  // const history = useHistory();
   const [authorName, setAuthorName] = useState("");
   const [authorTel, setTel] = useState("");
   const [name, setName] = useState("");
@@ -188,7 +189,10 @@ export default () => {
       <Button
         variant="contained"
         color="primary"
-        onClick={(e) => submitHandler(e)}
+        onClick={(e) => {
+          submitHandler(e);
+          history.push('/');
+        }}
       >
         Создать
       </Button>

@@ -5,6 +5,7 @@ import Copyright from "./Copyright";
 import { useSelector, useDispatch } from "react-redux";
 import { registerSaga } from "../actionCreators/actionCreatorSaga";
 import AlertComponent from "../components/Alert"
+import history from "../heplers/history"
 
 
 
@@ -71,7 +72,7 @@ export default function RegisterUser() {
               required
               fullWidth
               id="exampleEmail"
-              label="Name"
+              label="Login"
               name="nameUser"
               autoComplete="name"
               autoFocus
@@ -121,15 +122,16 @@ export default function RegisterUser() {
               onClick={() => {
                 console.log(state.name, state.email, state.password, state.repeadPassword);
                 dispatch(registerSaga(state.name, state.email, state.password, state.repeadPassword))
+                history.push('/profile')
               }}
             >
               Зарегистироваться
           </Button>
           </form>
         </div>
-        <Box mt={8}>
+        {/* <Box mt={8}>
           <Copyright />
-        </Box>
+        </Box> */}
 
       </Container>
     </>

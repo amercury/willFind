@@ -43,7 +43,7 @@ export default () => {
 
         </div>
         :
-        <Fragment> Загрузка страницы</Fragment>}
+        <Fragment> Нет запросов на ближайший поиск</Fragment>}
     </ Fragment>
   );
 };
